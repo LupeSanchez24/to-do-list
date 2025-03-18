@@ -1,0 +1,61 @@
+.toDo__date {
+  margin-left: 20px;
+}
+
+.toDo__title {
+  margin-left: 20px;
+}
+
+.toDo__icon {
+  padding-left: 330px;
+  margin-top: -43px;
+  width: 30px;
+}
+
+.toDo__task-date {
+  margin-left: 20px;
+  padding-top: 10px;
+}
+
+.toDo__container {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  color: beige;
+  background-color: rgb(89, 88, 86);
+  width: 400px;
+  height: 200px;
+  border-radius: 20px;
+  margin-left: 40px;
+  margin-bottom: 20px;
+}
+
+.toDo__checkbox {
+  display: none;
+}
+.toDo__activity::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #000;
+  border-radius: 4px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.toDo__checkbox:checked + .toDo__activity::before {
+  background-color: #f4f4f4;
+  border-color: #f4f4f4;
+  content: "\2713"; /* Checkmark character */
+  color: rgb(10, 5, 5);
+  text-align: center;
+  font-size: 14px;
+  line-height: 20px;
+}
+.toDo__activity {
+  margin-bottom: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  padding-left: 15px;
+}

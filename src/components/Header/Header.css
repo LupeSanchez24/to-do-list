@@ -1,0 +1,13 @@
+.header {
+  display: flex;
+}
+.header__icon {
+  width: 50px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.header__title {
+  font-size: 20px;
+  margin-left: 600px;
+}
