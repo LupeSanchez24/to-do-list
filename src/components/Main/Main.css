@@ -1,20 +1,37 @@
-.toDo__date {
-  margin-left: 20px;
-}
-
 .toDo__title {
   margin-left: 20px;
 }
 
-.toDo__icon {
-  padding-left: 330px;
-  margin-top: -43px;
-  width: 30px;
+.toDo__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  background-color: rgb(89, 88, 86);
+  width: 400px;
+  margin-left: 40px;
+  margin-bottom: 4px;
+  border-radius: 20px;
+  height: 40px;
 }
 
 .toDo__task-date {
-  margin-left: 20px;
-  padding-top: 10px;
+  color: beige;
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.toDo__icon {
+  width: 30px;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-top: 6px;
+  transition: transform 0.3s ease;
+  transform: rotate(180deg);
+}
+
+.toDo__icon--rotated {
+  transform: rotate(0deg);
 }
 
 .toDo__container {
@@ -56,6 +73,6 @@
   margin-bottom: 10px;
   font-size: 16px;
   cursor: pointer;
-  margin-top: 10px;
-  padding-left: 15px;
+  padding-left: 30px;
+  margin-top: 20px;
 }
