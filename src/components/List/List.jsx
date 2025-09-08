@@ -2,7 +2,7 @@ import "../List/List.css";
 import { useState } from "react";
 import getDownIcon from "../../assets/get-down-icon.svg";
 
-function List() {
+function List({ tasks, onDelete }) {
   const [isTodayVisible, setIsTodayVisible] = useState(true);
   const [isTomorrowVisible, setIsTomorrowVisible] = useState(true);
 
@@ -32,32 +32,32 @@ function List() {
         </div>
         {isTodayVisible && (
           <div className="list__container">
-            <input
-              type="checkbox"
-              className="list__checkbox"
-              id="exerciseToday"
-            />
-            <label className="list__activity" htmlFor="exerciseToday">
-              Exercise
-            </label>
-            <input
-              type="checkbox"
-              className="list__checkbox"
-              id="laundryToday"
-            />
-            <label className="list__activity" htmlFor="laundryToday">
-              Laundry
-            </label>
-            <input type="checkbox" className="list__checkbox" id="readToday" />
-            <label className="list__activity" htmlFor="readToday">
-              Read
-            </label>
+            {tasks.length === 0 ? (
+              <p className="list__empty">No tasks for today.</p>
+            ) : (
+              tasks.map((task, index) => (
+                <div key={index}>
+                  <input
+                    type="checkbox"
+                    className="list__checkbox"
+                    id={`task-${index}`}
+                  />
+                  <label className="list__activity" htmlFor={`task-${index}`}>
+                    {task}
+                  </label>
+                  <button
+                    className="list__delete"
+                    onClick={() => onDelete(index)}
+                  ></button>
+                </div>
+              ))
+            )}
           </div>
         )}
       </div>
 
       {/*Tomorrow List */}
-      <div className="list__section">
+      {/* <div className="list__section">
         <div className="list__header">
           <p className="list__task-date">Tomorrow:</p>
           <div className="list__image">
@@ -94,7 +94,7 @@ function List() {
             </label>
           </div>
         )}
-      </div>
+        </div>*/}
     </div>
   );
 }

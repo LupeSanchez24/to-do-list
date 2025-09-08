@@ -3,6 +3,8 @@ import "../Main/Main.css";
 import List from "../List/List";
 function Main() {
   const [currentDate, setCurrentDate] = useState(getDate());
+  const [inputValue, setInputValue] = useState();
+  const [tasks, setTasks] = useState([]);
 
   function getDate() {
     const today = new Date();
@@ -10,94 +12,37 @@ function Main() {
     return today.toLocaleDateString("en-US", options);
   }
 
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const addTask = () => {
+    const trimmed = inputValue.trim();
+    if (trimmed === "") return;
+
+    setTasks([...tasks, trimmed]);
+    setInputValue("");
+  };
+  const deleteTask = (taskToDelete) => {
+    setTasks((prevTasks) =>
+      prevTasks.filter((_, task) => task !== taskToDelete)
+    );
+  };
+
   return (
     <main className="toDo">
       <h2 className="toDo__date"> Today is {currentDate}</h2>
       <p className="toDo__title"> Your Tasks for the week:</p>
-      <List />
-
-      {/*Before*/}
-      {/*<div className="toDo__container">
-        <p className="toDo__task-date">Today:</p>
-        <img
-          className="toDo__icon"
-          src={getDownIcon}
-          alt="toggle to-do list"
-          onClick={toggleVisibility}
-        />
-        {isVisible && (
-          <>
-            <input
-              type="checkbox"
-              className="toDo__checkbox"
-              id="exerciseToday"
-            />
-            <label className="toDo__activity" htmlFor="exerciseToday">
-              Exercise
-            </label>
-            <input
-              type="checkbox"
-              className="toDo__checkbox"
-              id="laundryToday"
-            />
-            <label className="toDo__activity" htmlFor="laundryToday">
-              Laundry
-            </label>
-            <input type="checkbox" className="toDo__checkbox" id="readToday" />
-            <label className="toDo__activity" htmlFor="readToday">
-              Read
-            </label>
-          </>
-        )}
-      </div>
-      <div className="toDo__container">
-        <p className="toDo__task-date">Tomorrow:</p>
-        <img className="toDo__icon" src={getDownIcon} alt="get down icon" />
-        <input
-          type="checkbox"
-          className="toDo__checkbox"
-          id="exerciseTomorrow"
-        />
-        <label className="toDo__activity" htmlFor="exerciseTomorrow">
-          Exercise
-        </label>
-        <input
-          type="checkbox"
-          className="toDo__checkbox"
-          id="laundryTomorrow"
-        />
-        <label className="toDo__activity" htmlFor="laundryTomorrow">
-          Laundry
-        </label>
-        <input type="checkbox" className="toDo__checkbox" id="readTomorrow" />
-        <label className="toDo__activity" htmlFor="readTomorrow">
-          Read
-        </label>
-      </div>
-      <div className="toDo__container">
-        <p className="toDo__task-date">This Week:</p>
-        <img className="toDo__icon" src={getDownIcon} alt="get down icon" />
-        <input
-          type="checkbox"
-          className="toDo__checkbox"
-          id="exerciseThisWeek"
-        />
-        <label className="toDo__activity" htmlFor="exerciseThisWeek">
-          Exercise
-        </label>
-        <input
-          type="checkbox"
-          className="toDo__checkbox"
-          id="laundryThisWeek"
-        />
-        <label className="toDo__activity" htmlFor="laundryThisWeek">
-          Laundry
-        </label>
-        <input type="checkbox" className="toDo__checkbox" id="readThisWeek" />
-        <label className="toDo__activity" htmlFor="readThisWeek">
-          Read
-        </label>
-        </div>*/}
+      <List tasks={tasks} onDelete={deleteTask} />
+      <div className="toDo__add"></div>
+      <input
+        type="text"
+        id="todo-input"
+        placeholder="Add a new task"
+        value={inputValue}
+        onChange={handleInputChange}
+      />
+      <button onClick={addTask}></button>
     </main>
   );
 }
