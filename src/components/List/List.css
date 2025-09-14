@@ -69,10 +69,25 @@
   font-size: 14px;
   line-height: 20px;
 }
+
+.list__task {
+  margin-top: 20px;
+}
+
 .list__activity {
   margin-bottom: 10px;
   font-size: 16px;
   cursor: pointer;
   padding-left: 30px;
   margin-top: 20px;
+}
+
+.list__delete {
+  margin-left: 230px;
+  border-radius: 8px;
+  border: none;
+}
+
+.list__empty {
+  margin-left: 20px;
 }

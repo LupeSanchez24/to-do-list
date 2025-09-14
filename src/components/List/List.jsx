@@ -36,7 +36,7 @@ function List({ tasks, onDelete }) {
               <p className="list__empty">No tasks for today.</p>
             ) : (
               tasks.map((task, index) => (
-                <div key={index}>
+                <div key={index} className="list__task">
                   <input
                     type="checkbox"
                     className="list__checkbox"
@@ -48,7 +48,9 @@ function List({ tasks, onDelete }) {
                   <button
                     className="list__delete"
                     onClick={() => onDelete(index)}
-                  ></button>
+                  >
+                    DELETE
+                  </button>
                 </div>
               ))
             )}

@@ -33,16 +33,23 @@ function Main() {
     <main className="toDo">
       <h2 className="toDo__date"> Today is {currentDate}</h2>
       <p className="toDo__title"> Your Tasks for the week:</p>
-      <List tasks={tasks} onDelete={deleteTask} />
-      <div className="toDo__add"></div>
-      <input
-        type="text"
-        id="todo-input"
-        placeholder="Add a new task"
-        value={inputValue}
-        onChange={handleInputChange}
-      />
-      <button onClick={addTask}></button>
+      <div className="toDo__layout">
+        <List tasks={tasks} onDelete={deleteTask} />
+        <div className="toDo__add">
+          <input
+            type="text"
+            id="todo-input"
+            className="toDo__input"
+            placeholder="Add a new task"
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+          <button className="toDo__add-bottom" onClick={addTask}>
+            {" "}
+            Add
+          </button>
+        </div>
+      </div>
     </main>
   );
 }
