@@ -3,8 +3,7 @@ import "../Main/Main.css";
 import List from "../List/List";
 function Main() {
   const [currentDate, setCurrentDate] = useState(getDate());
-  const [inputValue, setInputValue] = useState();
-  const [tasks, setTasks] = useState([]);
+  const [inputValue, setInputValue] = useState("");
 
   function getDate() {
     const today = new Date();
@@ -16,6 +15,21 @@ function Main() {
     setInputValue(e.target.value);
   };
 
+  const [tasksByDay, setTasksByDay] = useState({
+    Monday: [],
+    Tuesday: [],
+    Wednesday: [],
+    Thursday: [],
+    Friday: [],
+  });
+
+  const handleDelete = (day, index) => {
+    setTasksByDay((prev) => ({
+      ...prev,
+      [day]: prev[day].filter((_, i) => i !== index),
+    }));
+  };
+
   const addTask = () => {
     const trimmed = inputValue.trim();
     if (trimmed === "") return;
@@ -23,18 +37,14 @@ function Main() {
     setTasks([...tasks, trimmed]);
     setInputValue("");
   };
-  const deleteTask = (taskToDelete) => {
-    setTasks((prevTasks) =>
-      prevTasks.filter((_, task) => task !== taskToDelete)
-    );
-  };
 
   return (
     <main className="toDo">
       <h2 className="toDo__date"> Today is {currentDate}</h2>
       <p className="toDo__title"> Your Tasks for the week:</p>
       <div className="toDo__layout">
-        <List tasks={tasks} onDelete={deleteTask} />
+        <List tasksByDay={tasksByDay} onDelete={handleDelete} />
+
         <div className="toDo__add">
           <input
             type="text"

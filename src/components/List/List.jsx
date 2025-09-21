@@ -1,21 +1,37 @@
 import "../List/List.css";
 import { useState } from "react";
-import getDownIcon from "../../assets/get-down-icon.svg";
+//import getDownIcon from "../../assets/get-down-icon.svg";
+import TaskSection from "../TaskSection/TaskSection";
+function List({ tasksByDay, onDelete }) {
+  const [visibility, setVisibility] = useState({
+    Monday: true,
+    Tuesday: true,
+    Wednesday: true,
+    Thursday: true,
+    Friday: true,
+  });
 
-function List({ tasks, onDelete }) {
-  const [isTodayVisible, setIsTodayVisible] = useState(true);
-  const [isTomorrowVisible, setIsTomorrowVisible] = useState(true);
-
-  function toggleTodayVisibility() {
-    setIsTodayVisible((prev) => !prev);
-  }
-  function toggleTomorrowVisibility() {
-    setIsTomorrowVisible((prev) => !prev);
-  }
+  const toggleVisibility = (day) => {
+    setVisibility((prev) => ({
+      ...prev,
+      [day]: !prev[day],
+    }));
+  };
 
   return (
     <div className="list">
-      {/* Today List*/}
+      {Object.entries(tasksByDay).map(([day, tasks]) => (
+        <TaskSection
+          key={day}
+          label={day}
+          tasks={tasks}
+          isVisible={visibility[day]}
+          toggleVisibility={() => toggleVisibility(day)}
+          onDelete={onDelete}
+        />
+      ))}
+
+      {/*  
       <div className="list__section">
         <div className="list__header">
           <p className="list__task-date">Today:</p>
@@ -56,7 +72,7 @@ function List({ tasks, onDelete }) {
             )}
           </div>
         )}
-      </div>
+              </div>*/}
 
       {/*Tomorrow List */}
       {/* <div className="list__section">

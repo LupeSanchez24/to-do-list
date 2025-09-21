@@ -68,24 +68,34 @@
   text-align: center;
   font-size: 14px;
   line-height: 20px;
+  cursor: pointer;
 }
 
 .list__task {
-  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 .list__activity {
-  margin-bottom: 10px;
+  flex: 1;
   font-size: 16px;
-  cursor: pointer;
-  padding-left: 30px;
-  margin-top: 20px;
+  padding-left: 10px;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .list__delete {
-  margin-left: 230px;
+  margin-left: 0;
   border-radius: 8px;
   border: none;
+  flex-shrink: 0;
+  cursor: pointer;
 }
 
 .list__empty {
